@@ -1,5 +1,6 @@
-package com.spring.playground.bookreview.domain;
+package com.spring.playground.bookreview.repository;
 
+import com.spring.playground.bookreview.domain.Member;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,6 +21,16 @@ public class MemberRepository {
 
     public Member findById(Long id) {
         return store.get(id);
+    }
+
+    public Member findByNickName(String nickName) {
+        List<Member> memberList = findByAll();
+        for (Member member : memberList) {
+            if(member.getNickName().equals(nickName)) {
+                return member;
+            }
+        }
+        return null;
     }
 
     public List<Member> findByAll() {

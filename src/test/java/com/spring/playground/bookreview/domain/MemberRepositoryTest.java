@@ -1,14 +1,12 @@
 package com.spring.playground.bookreview.domain;
 
-import org.assertj.core.api.Assertions;
+import com.spring.playground.bookreview.repository.MemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.apache.coyote.http11.Constants.a;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberRepositoryTest {
 
@@ -30,6 +28,24 @@ class MemberRepositoryTest {
 
         //then
         assertThat(saveMember).isEqualTo(member);
+    }
+
+    @Test
+    void findByNickName() {
+        //given
+        Member member1 = new Member("sally1", "1234");
+        Member member2 = new Member("sally2", "1234");
+
+        repository.save(member1);
+        repository.save(member2);
+
+        //when
+        Member findMember1 = repository.findByNickName(member1.getNickName());
+        Member findNotSavedMember = repository.findByNickName("sally3");
+
+        //then
+        assertThat(findMember1).isEqualTo(member1);
+        assertThat(findNotSavedMember).isEqualTo(null);
     }
 
     @Test
