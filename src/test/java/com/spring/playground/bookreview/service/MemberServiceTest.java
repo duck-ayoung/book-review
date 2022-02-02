@@ -24,7 +24,7 @@ class MemberServiceTest {
     @Test
     void join() {
         //given
-        Member member = new Member("sally", "1234");
+        Member member = new Member("sally","sally", "1234");
 
         //when
         Long memberId = memberService.join(member);
@@ -36,8 +36,8 @@ class MemberServiceTest {
     @Test
     void joinSameNickName() {
         //given
-        Member member1 = new Member("sally", "1234");
-        Member member2 = new Member("sally", "1234");
+        Member member1 = new Member("sally","sally", "1234");
+        Member member2 = new Member("sally","sally", "1234");
 
         //when
         Long memberId1 = memberService.join(member1);

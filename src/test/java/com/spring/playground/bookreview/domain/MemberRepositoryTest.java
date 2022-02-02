@@ -20,7 +20,7 @@ class MemberRepositoryTest {
     @Test
     void save() {
         //give
-        Member member = new Member("sally", "1234");
+        Member member = new Member("sally", "sally", "1234");
 
         //when
         Long saveId = repository.save(member);
@@ -33,8 +33,8 @@ class MemberRepositoryTest {
     @Test
     void findByNickName() {
         //given
-        Member member1 = new Member("sally1", "1234");
-        Member member2 = new Member("sally2", "1234");
+        Member member1 = new Member("sally","sally1", "1234");
+        Member member2 = new Member("sally","sally2", "1234");
 
         repository.save(member1);
         repository.save(member2);
@@ -51,8 +51,8 @@ class MemberRepositoryTest {
     @Test
     void findByAll() {
         //give
-        Member member1 = new Member("sally1", "1234");
-        Member member2 = new Member("sally2", "1234");
+        Member member1 = new Member("sally","sally1", "1234");
+        Member member2 = new Member("sally","sally2", "1234");
 
         repository.save(member1);
         repository.save(member2);
@@ -69,12 +69,12 @@ class MemberRepositoryTest {
     @Test
     void update() {
         //give
-        Member member1 = new Member("sally1", "1234");
+        Member member1 = new Member("sally","sally1", "1234");
 
         Long memberId = repository.save(member1);
 
         //when
-        Member updateMember = new Member("sally2", "1234");
+        Member updateMember = new Member("sally","sally2", "1234");
         repository.update(memberId, updateMember);
 
         Member member = repository.findById(memberId);

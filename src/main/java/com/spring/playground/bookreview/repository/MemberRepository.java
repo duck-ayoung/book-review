@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -21,6 +22,11 @@ public class MemberRepository {
 
     public Member findById(Long id) {
         return store.get(id);
+    }
+
+    public Optional<Member> findByLoginId(String loginId) {
+        return findByAll().stream().filter(member -> member.getLoginId().equals(loginId))
+                .findFirst();
     }
 
     public Member findByNickName(String nickName) {
