@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,7 +22,7 @@ public class BookController {
     private final BookRepository bookRepository;
 
     @GetMapping
-    public String bookList(Model model) {
+    public String bookList(@ModelAttribute BookSearch bookSearch, Model model) {
         log.info("bookList");
         List<Book> books = bookRepository.findByAll();
         model.addAttribute("books", books);
@@ -29,9 +30,10 @@ public class BookController {
     }
 
     @PostMapping
-    public String searchBookList(Model model) {
+    public String searchBookList(@ModelAttribute BookSearch bookSearch, Model model) {
         log.info("bookList");
-        List<Book> books = bookRepository.findByAll();
+        String title = bookSearch.getTitle();
+        List<Book> books = bookRepository.findByTitle(title);
         model.addAttribute("books", books);
         return "/books/bookList";
     }
