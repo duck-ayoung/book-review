@@ -1,11 +1,7 @@
 package com.spring.playground.bookreview.service;
 
 import com.spring.playground.bookreview.domain.Board;
-import com.spring.playground.bookreview.domain.Book;
-import com.spring.playground.bookreview.domain.Member;
 import com.spring.playground.bookreview.repository.BoardRepository;
-import com.spring.playground.bookreview.repository.BookRepository;
-import com.spring.playground.bookreview.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +12,9 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final MemberRepository memberRepository;
-    private final BookRepository bookRepository;
 
     public Long save(String title, String content, Long memberId, Long bookId) {
-        Member member = memberRepository.findById(memberId);
-        Book book = bookRepository.findById(bookId);
-        Board board = Board.createBoard(member, book, title, content);
+        Board board = Board.createBoard(memberId, bookId, title, content);
         return board.getId();
     }
 
@@ -34,12 +26,12 @@ public class BoardService {
         return boardRepository.findById(id);
     }
 
-    public List<Board> findByBook(Book book) {
-        return boardRepository.findByBook(book);
+    public List<Board> findByBook(Long bookId) {
+        return boardRepository.findByBook(bookId);
     }
 
-    public List<Board> findByMember(Member member) {
-        return boardRepository.findByMember(member);
+    public List<Board> findByMember(Long memberId) {
+        return boardRepository.findByMember(memberId);
     }
 
     public List<Board> findByTitle(String title) {

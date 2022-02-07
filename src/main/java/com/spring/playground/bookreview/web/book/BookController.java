@@ -1,15 +1,12 @@
 package com.spring.playground.bookreview.web.book;
 
 import com.spring.playground.bookreview.domain.Book;
-import com.spring.playground.bookreview.repository.BookRepository;
+import com.spring.playground.bookreview.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +16,12 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
     @GetMapping
     public String bookList(@ModelAttribute BookSearch bookSearch, Model model) {
         log.info("bookList");
-        List<Book> books = bookRepository.findByAll();
+        List<Book> books = bookService.findByAll();
         model.addAttribute("books", books);
         return "/books/bookList";
     }
@@ -33,8 +30,9 @@ public class BookController {
     public String searchBookList(@ModelAttribute BookSearch bookSearch, Model model) {
         log.info("bookList");
         String title = bookSearch.getTitle();
-        List<Book> books = bookRepository.findByTitle(title);
+        List<Book> books = bookService.findByTitle(title);
         model.addAttribute("books", books);
         return "/books/bookList";
     }
+
 }

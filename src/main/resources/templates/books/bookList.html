@@ -26,10 +26,12 @@
         <tr>
             <th>title</th>
             <th>author</th>
+            <th>review</th>
         </tr>
         <tr th:each="book : ${books}">
             <td th:text="${book.title}">title</td>
             <td th:text="${book.author}">author</td>
+            <td><button type="button" th:onclick="|location.href='@{/boards/review/{bookId}(bookId=${book.id})}'|" >review</button></td>
         </tr>
     </table>
 

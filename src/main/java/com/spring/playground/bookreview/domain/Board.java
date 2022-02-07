@@ -12,21 +12,21 @@ public class Board {
     private String title;
     private String content;
 
-    private Member member;
-    private Book book;
+    private Long memberId;
+    private Long bookId;
 
     private LocalDateTime modifyTime;
 
-    public Board(String title, String content, Member member, Book book) {
+    public Board(String title, String content, Long memberId, Long bookId) {
         this.title = title;
         this.content = content;
-        this.member = member;
-        this.book = book;
+        this.memberId = memberId;
+        this.bookId = bookId;
     }
 
     //생성 로직
-    public static Board createBoard(Member member, Book book, String title, String content) {
-        Board board = new Board(title, content, member, book);
+    public static Board createBoard(Long memberId, Long bookId, String title, String content) {
+        Board board = new Board(title, content, memberId, bookId);
         board.setModifyTime(LocalDateTime.now());
         return  board;
     }

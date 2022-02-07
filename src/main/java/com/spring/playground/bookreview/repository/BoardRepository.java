@@ -30,22 +30,22 @@ public class BoardRepository {
         return store.get(id);
     }
 
-    public List<Board> findByBook(Book book) {
+    public List<Board> findByBook(Long bookId) {
         List<Board> boardList = findByAll();
         List<Board> findList = new ArrayList<>();
         for (Board board : boardList) {
-            if(board.getBook() == book) {
+            if(board.getBookId().equals(bookId)) {
                 findList.add(board);
             }
         }
         return findList;
     }
 
-    public List<Board> findByMember(Member member) {
+    public List<Board> findByMember(Long memberId) {
         List<Board> boardList = findByAll();
         List<Board> findList = new ArrayList<>();
         for (Board board : boardList) {
-            if(board.getMember() == member) {
+            if(board.getMemberId() == memberId) {
                 findList.add(board);
             }
         }
