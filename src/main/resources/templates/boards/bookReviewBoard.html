@@ -16,5 +16,8 @@
         <td th:text="${board.content}">content</td>
     </tr>
 </table>
+
+<button type="button" th:onclick="|location.href='@{/boards/add/{bookId}(bookId=${bookId})}'|" >new</button>
+
 </body>
 </html>

@@ -15,6 +15,7 @@ public class BoardService {
 
     public Long save(String title, String content, Long memberId, Long bookId) {
         Board board = Board.createBoard(memberId, bookId, title, content);
+        boardRepository.save(board);
         return board.getId();
     }
 
