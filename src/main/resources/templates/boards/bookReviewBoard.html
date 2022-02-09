@@ -10,10 +10,12 @@
     <tr>
         <th>title</th>
         <th>content</th>
+        <th>time</th>
     </tr>
     <tr th:each="board : ${boards}">
-        <td th:text="${board.title}">title</td>
-        <td th:text="${board.content}">content</td>
+        <td><a th:href="@{|/boards/detail/${board.id}|}" th:text="${board.title}">title</a></td>
+        <td><a th:href="@{|/boards/detail/${board.id}|}" th:text="${board.content}">content</a></td>
+        <td><a th:href="@{|/boards/detail/${board.id}|}" th:text="${board.modifyTime}">time</a></td>
     </tr>
 </table>
 

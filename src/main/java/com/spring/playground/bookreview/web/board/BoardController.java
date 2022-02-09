@@ -1,9 +1,7 @@
 package com.spring.playground.bookreview.web.board;
 
 import com.spring.playground.bookreview.domain.Board;
-import com.spring.playground.bookreview.domain.Book;
 import com.spring.playground.bookreview.domain.Member;
-import com.spring.playground.bookreview.repository.MemberRepository;
 import com.spring.playground.bookreview.service.BoardService;
 import com.spring.playground.bookreview.service.BookService;
 import com.spring.playground.bookreview.service.MemberService;
@@ -54,5 +52,28 @@ public class BoardController {
         boardService.save(boardForm.getTitle(), boardForm.getContent(), member.get().getId(), bookId);
 
         return "redirect:/boards/review/{bookId}";
+    }
+
+    @GetMapping("detail/{boardId}")
+    public String detailBoard(@PathVariable long boardId, Model model) {
+        Board board = boardService.findById(boardId);
+        if (board == null) {
+            return "redirect:/";
+        }
+
+        BoardForm boardForm = new BoardForm(board.getTitle(), board.getContent());
+        model.addAttribute("boardForm", boardForm);
+        return "boards/board";
+    }
+
+    @PostMapping("detail/{boardId}")
+    public String updateBoard(@PathVariable long boardId, @ModelAttribute BoardForm boardForm) {
+        Board board = boardService.findById(boardId);
+        if (board == null) {
+            return "redirect:/";
+        }
+
+        board.updateBoard(boardForm.getTitle(), boardForm.getContent());
+        return "redirect:/books";
     }
 }
