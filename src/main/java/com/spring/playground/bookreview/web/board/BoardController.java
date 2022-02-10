@@ -74,6 +74,6 @@ public class BoardController {
         }
 
         board.updateBoard(boardForm.getTitle(), boardForm.getContent());
-        return "redirect:/books";
+        return "redirect:/boards/review/"+board.getBookId();
     }
 }
