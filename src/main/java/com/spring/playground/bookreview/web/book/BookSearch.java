@@ -5,5 +5,21 @@ import lombok.Data;
 @Data
 public class BookSearch {
 
-    String title;
+    enum SearchType {
+        TITLE("제목"),
+        AUTHOR("작가");
+
+        private final String description;
+
+        SearchType(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+    }
+
+    String value;
+    SearchType searchType;
 }

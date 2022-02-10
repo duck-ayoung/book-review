@@ -24,8 +24,8 @@ public class TestDataInit {
         Member member = new Member("test", "test", "test");
         memberRepository.save(member);
 
-        Book book1 = new Book("book1", "book1", "book1");
-        Book book2 = new Book("book2", "book2", "book2");
+        Book book1 = new Book("book1", "book1", "sally");
+        Book book2 = new Book("book2", "book2", "sally");
 
         bookRepository.save(book1);
         bookRepository.save(book2);

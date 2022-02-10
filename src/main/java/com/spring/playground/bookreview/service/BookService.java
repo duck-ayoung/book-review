@@ -28,6 +28,10 @@ public class BookService {
         return bookRepository.findByTitle(title);
     }
 
+    public List<Book> findByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
+
     public List<Book> findByAll() {
         return bookRepository.findByAll();
     }

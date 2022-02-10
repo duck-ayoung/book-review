@@ -36,6 +36,19 @@ public class BookRepository {
         return findList;
     }
 
+    public List<Book> findByAuthor(String author) {
+        String findAuthor = removeSpace(author);
+        List<Book> bookList = findByAll();
+        List<Book> findList = new ArrayList<>();
+        for (Book book : bookList) {
+            String bookAuthor = removeSpace(book.getAuthor());
+            if(bookAuthor.contains(findAuthor)) {
+                findList.add(book);
+            }
+        }
+        return findList;
+    }
+
     private String removeSpace(String title) {
         return title.replaceAll("\\s", "");
     }
